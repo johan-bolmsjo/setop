@@ -1,0 +1,7 @@
+(executable
+ (name setop)
+ (flags :standard -safe-string))
+
+(install
+ (section bin)
+  (files (setop.exe as setop)))
