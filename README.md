@@ -18,7 +18,6 @@ Make sure the following packages are installed (using opam).
 
 * dune
 
-Use the wrapper Makefile to build and install:
+Then execute the following commands:
 
-    make build
-    make install PREFIX=$HOME/.local
+    dune build && dune install --prefix ~/.local
