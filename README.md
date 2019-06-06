@@ -18,6 +18,6 @@ Make sure the following packages are installed (using opam).
 
 * dune
 
-Then execute the following commands:
+Execute the following commands to install `setop`:
 
     dune build && dune install --prefix ~/.local

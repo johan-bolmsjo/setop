@@ -1,5 +1,8 @@
 opam-version: "2.0"
-maintainer: "dev@johan.bitmaster.se"
+
+license:      "MIT"
+authors:      ["Johan Bolmsjö"]
+maintainer:   "dev@johan.bitmaster.se"
 
 build: [
   ["dune" "subst"] {pinned}
@@ -9,16 +12,13 @@ build: [
 install: ["dune" "install"]
 
 depends: [
-  "ocaml" { >= "4.03.0"}
-  "dune" {build}
+  "ocaml" {>= "4.06.0"}
+  "dune"  {build & >= "1.9"}
 ]
 
-dev-repo: "https://github.com/johan-bolmsjo/setop"
-
-homepage: "https://github.com/johan-bolmsjo/setop"
-license: "MIT"
-authors: ["Johan Bolmsjö"]
+homepage:    "https://github.com/johan-bolmsjo/setop"
 bug-reports: "https://github.com/johan-bolmsjo/setop/issues"
+dev-repo:    "git+https://github.com/johan-bolmsjo/setop.git"
 
 synopsis: "Command line tool to perform set operations on lines from text files."
 
