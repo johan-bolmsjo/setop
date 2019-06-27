@@ -28,21 +28,23 @@ let set_of_file name :set_result =
     with e -> close_in ichan; Error e
   with e -> Error e
 
-let (>>=) x f = match x with Ok v -> f v | Error _ as e -> e
+let (let*) x f = match x with Ok v -> f v | Error _ as e -> e
 
 let union_cmd (args :string list) :set_result =
   let rec aux acc = function
-    | x :: l -> set_of_file x >>= fun x -> aux (StringSet.union acc x) l
+    | x :: xs ->
+      let* set = set_of_file x in
+      aux (StringSet.union acc set) xs
     | [] -> Ok acc
   in
   aux StringSet.empty args 
 
 let two_arg_cmd apply (args :string list) :set_result =
   match args with
-  | a :: b :: [] ->
-    set_of_file a >>= fun a ->
-    set_of_file b >>= fun b ->
-    Ok(apply a b)
+  | x :: y :: [] ->
+    let* set1 = set_of_file x in
+    let* set2 = set_of_file y in
+    Ok(apply set1 set2)
   | _ -> Error usage
 
 let inter_cmd : string list -> set_result = two_arg_cmd StringSet.inter
